@@ -28,8 +28,10 @@
 
     <div class="col-md-6">
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" id="cardCollectIn" type="search" placeholder="Card Name" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" id="cardCollect" type="submit">Search in your Collection</button>
+        <input class="form-control mr-sm-2" id="cardCollectIn" type="search" placeholder="Card Name"
+          aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" id="cardCollect" type="submit">Search in your
+          Collection</button>
       </form>
     </div>
 
@@ -44,9 +46,6 @@
 
 </div>
 
-<!-- Modal Button -->
-<button id="myBtn">Open Modal</button>
-
 <!-- The Modal -->
 <div id="myModal" class="modal">
 
@@ -57,8 +56,7 @@
       <h2>Modal Header</h2>
     </div>
     <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
+
     </div>
     <div class="modal-footer">
       <h3>Modal Footer</h3>
@@ -68,9 +66,41 @@
 </div>
 
 <div>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
+
   <div>
-  {{#each cards}}
-      {{Card-Database}}
-  {{/each}}
-</div>
+    {{#each cards}}
+    {{Card-Database}}
+    {{/each}}
+  </div>
 </div>
