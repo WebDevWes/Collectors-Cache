@@ -40,7 +40,7 @@ $(document).ready(() => {
   }
 
   function handleLoginErr(err) {
-    $("#alert .msg").text(err.responseJSON);
+    $("#alert .msg").text("Login error");
     $("#alert").fadeIn(500);
   }
 });
