@@ -10,6 +10,7 @@ const span = document.getElementsByClassName("close")[0];
 // Variable to be called
 let searchCall;
 
+
 // When the user clicks the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
@@ -30,12 +31,14 @@ window.onclick = function(event) {
 $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
-  $.get("/api/user_data").then((data) => {
+
+  $.get("/api/user_data").then(data => {
     $(".member-name").text(data.username);
     document.title = data.username + "'s Collector Cache";
   });
 
-  $("#cardSearch").on("click", (event) => {
+
+  $("#cardSearch").on("click", event =>{
     event.preventDefault();
     const queryURL = buildQueryURL();
     clearSec("#cardSearchIn");
