@@ -1,0 +1,106 @@
+<nav class="navbar navbar-default">
+
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/logout">
+        Logout
+      </a>
+    </div>
+
+  </div>
+
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2><span class="member-name"></span>'s Collector Cache</h2>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" id="cardCollectIn" type="search" placeholder="Card Name"
+          aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" id="cardCollect" type="submit">Search in your
+          Collection</button>
+      </form>
+    </div>
+
+    <div class="col-md-6">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" id="cardSearchIn" type="search" placeholder="Card Name" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" id="cardSearch" type="submit">Search to Add</button>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
+
+<div>
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
+
+  <div>
+    {{#each cards}}
+    {{Card-Database}}
+    {{/each}}
+  </div>
+</div>
