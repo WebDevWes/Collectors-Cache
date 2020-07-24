@@ -59,11 +59,11 @@
       <hr>
       <label for="condition">Condition</label>
       <select name="condition" id="condition">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
+        <option value="1">Near Mint</option>
+        <option value="2">Lightly Played</option>
+        <option value="3">Moderately Played</option>
+        <option value="4">Heavily Played</option>
+        <option value="5">Damaged</option>
       </select>
       <hr>
     </div>
@@ -79,38 +79,6 @@
 </div>
 
 <div>
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
-
-
   <div>
     {{#each cards}}
     {{Card-Database}}

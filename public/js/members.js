@@ -28,6 +28,46 @@ window.onclick = function(event) {
 };
 
 $(document).ready(() => {
+
+  const renderCards = () => {
+
+    $.get("/api/user_data").then(data => {
+
+      const queryURL = "/api/cards/" + data.id
+      $.get(queryURL).then(data => {
+        const cards = []
+
+        data.forEach(card => {
+
+          const queryURL = "https://api.scryfall.com/cards/search/?q=" + card.name
+          
+          $.ajax({
+            url: queryURL,
+            method: "GET",
+          }).then(response => {
+ 
+            const newCard= {
+
+              name: response.data[0].name,
+              img: response.data[0].image_uris.small,
+              description: response.data[0].oracle_text,
+              quantity: card.quantity,
+              condtion: card.condition,
+              price: response.data[0].prices.usd
+
+            }
+            cards.push(newCard)
+          });
+        })
+
+        console.log(cards)
+      })
+    })
+
+  }
+
+  renderCards()
+
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
 
@@ -47,7 +87,7 @@ $(document).ready(() => {
     }).then(function ajaxCall(response) {
       //console.log(response);
       searchCall = response;
-      console.log(searchCall);
+      // console.log(searchCall);
       callAPI(searchCall);
     });
   });
@@ -61,16 +101,39 @@ $(document).ready(() => {
       modalSelect.attr("data-name", searchCall.data[i].name);
       $(".modal-body").append(modalSelect);
 
+
       modalSelect.on("click", function selectedCard() {
-        console.log($("#condition").val());
         if (modalSelect.hasClass("selectedCard") === false) {
           modalSelect.addClass("selectedCard");
         }
+
+        let quantity
         if ($("#quantity").val() == "") {
-          console.log($("#quantity").attr("placeholder"));
+          quantity = $("#quantity").attr("placeholder");
         } else {
-          console.log($("#quantity").val());
+          quantity = $("#quantity").attr("value");
         }
+
+        const condition = $("#condition").val();
+        console.log("quantity", quantity)
+        console.log("typeof", typeof quantity)
+        // console.log(typeof quantity)
+
+        $.get("/api/user_data").then(data => {
+
+          const newCard = {
+
+            name: modalSelect.data("name"),
+            quantity: quantity,
+            condition: condition,
+            UserId: data.id
+
+          }
+
+          submitCard(newCard)
+
+        })
+
       });
     }
   };
@@ -86,4 +149,15 @@ $(document).ready(() => {
   const clearSec = (section) => {
     $(section).val("");
   };
+
+
+
+  const submitCard = card => {
+    console.log("posting")
+    $.post("/api/cards", card, function() {
+      location.reload();
+    });
+  }
+
+
 });

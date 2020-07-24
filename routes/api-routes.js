@@ -52,4 +52,21 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.post("/api/cards", (req, res) => {
+
+    db.Card.create(req.body).then(dbCard => res.json(dbCard))
+
+  })
+
+  app.get("/api/cards/:id", (req, res) => {
+
+    db.Card.findAll({
+      where: {UserId: req.params.id}
+    }).then(data => res.json(data))
+
+  })
+  
+
 };
+

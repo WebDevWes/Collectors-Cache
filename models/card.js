@@ -7,23 +7,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
 
-        smallURL: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-
-        largeURL: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-
         quantity: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-
-        description: {
-            type: DataTypes.STRING,
             allowNull: false,
         },
 
@@ -31,11 +16,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-
-        price: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        }
 
     })
 
