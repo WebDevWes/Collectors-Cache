@@ -10,7 +10,6 @@ const span = document.getElementsByClassName("close")[0];
 // Variable to be called
 let searchCall;
 
-
 // When the user clicks the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
@@ -32,13 +31,12 @@ $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
 
-  $.get("/api/user_data").then(data => {
+  $.get("/api/user_data").then((data) => {
     $(".member-name").text(data.username);
     document.title = data.username + "'s Collector Cache";
   });
 
-
-  $("#cardSearch").on("click", event =>{
+  $("#cardSearch").on("click", (event) => {
     event.preventDefault();
     const queryURL = buildQueryURL();
     clearSec("#cardSearchIn");
@@ -49,18 +47,32 @@ $(document).ready(() => {
     }).then(function ajaxCall(response) {
       //console.log(response);
       searchCall = response;
+      console.log(searchCall);
       callAPI(searchCall);
     });
   });
 
   const callAPI = () => {
-    console.log(searchCall.data[0].image_uris.normal);
+    $(".modal-body").empty();
     for (let i = 0; i < searchCall.data.length; i++) {
       const modalSelect = $("<img>");
-      modalSelect.attr("src", searchCall.data[i].image_uris.small) 
+      modalSelect.attr("class", "clickCard");
+      modalSelect.attr("src", searchCall.data[i].image_uris.small);
+      modalSelect.attr("data-name", searchCall.data[i].name);
       $(".modal-body").append(modalSelect);
-      modalSelect.on("click", )
-    };
+
+      modalSelect.on("click", function selectedCard() {
+        console.log($("#condition").val());
+        if (modalSelect.hasClass("selectedCard") === false) {
+          modalSelect.addClass("selectedCard");
+        }
+        if ($("#quantity").val() == "") {
+          console.log($("#quantity").attr("placeholder"));
+        } else {
+          console.log($("#quantity").val());
+        }
+      });
+    }
   };
 
   const buildQueryURL = () => {

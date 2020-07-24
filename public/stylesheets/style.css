@@ -78,3 +78,19 @@ h2 {
   background-color: #5cb85c;
   color: white;
 }
+
+.selectedCard {
+  border: 7px solid yellow;
+}
+
+option {
+  color: black;
+}
+
+#condition {
+  color: black;
+}
+
+#quantity {
+  color: black;
+}
