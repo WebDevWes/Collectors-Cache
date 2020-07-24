@@ -30,10 +30,9 @@ window.onclick = function(event) {
 $(document).ready(() => {
 
   const renderCards = () => {
-
     $.get("/api/user_data").then(data => {
+      const queryURL = "/api/cards/" + data.id 
 
-      const queryURL = "/api/cards/" + data.id
       $.get(queryURL).then(data => {
         const cards = []
 
@@ -66,7 +65,47 @@ $(document).ready(() => {
 
   }
 
+  
+
   renderCards()
+
+  const searchCards = (query) => {
+
+    $.get("/api/user_data").then(data => {
+
+      const queryURL = "/api/cards/" + data.id +"/" + query
+
+      $.get(queryURL).then(data => {
+        const cards = []
+
+        data.forEach(card => {
+
+          const queryURL = "https://api.scryfall.com/cards/search/?q=" + card.name
+          
+          $.ajax({
+            url: queryURL,
+            method: "GET",
+          }).then(response => {
+ 
+            const newCard= {
+
+              name: response.data[0].name,
+              img: response.data[0].image_uris.small,
+              description: response.data[0].oracle_text,
+              quantity: card.quantity,
+              condtion: card.condition,
+              price: response.data[0].prices.usd
+
+            }
+            cards.push(newCard)
+          });
+        })
+
+        console.log(cards)
+      })
+    })
+
+  }
 
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
@@ -75,6 +114,14 @@ $(document).ready(() => {
     $(".member-name").text(data.username);
     document.title = data.username + "'s Collector Cache";
   });
+
+  $("#cardCollect").on("click", (event) => {
+
+    event.preventDefault();
+    const card = $("#cardCollectIn").val()
+    searchCards(card)
+
+  })
 
   $("#cardSearch").on("click", (event) => {
     event.preventDefault();
