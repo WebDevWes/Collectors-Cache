@@ -40,7 +40,7 @@ $(document).ready(() => {
       const queryURL = "/api/cards/" + data.id;
       $.get(queryURL).then((data) => {
         const cards = [];
-        
+
         $("#database-container").empty();
 
         data.forEach((card) => {
@@ -65,11 +65,11 @@ $(document).ready(() => {
             let newRow = $("<tr>");
 
             let imgRow = $("<th>");
-            let nameRow = $("<td>");
-            let descriptionRow = $("<td>");
-            let quantityRow = $("<td>");
-            let conditionRow = $("<td>");
-            let priceRow = $("<td>");
+            let nameRow = $("<td class='text-yellow'>");
+            let descriptionRow = $("<td class='text-yellow'>");
+            let quantityRow = $("<td class='text-yellow'>");
+            let conditionRow = $("<td class='text-yellow'>");
+            let priceRow = $("<td class='text-yellow'>");
             let deleteRow = $("<td>");
 
             let newImg = $("<img>");
@@ -145,48 +145,48 @@ $(document).ready(() => {
 
             let newRow = $("<tr>");
 
-        let imgRow = $("<th>");
-        let nameRow = $("<td>");
-        let descriptionRow = $("<td>");
-        let quantityRow = $("<td>");
-        let conditionRow = $("<td>");
-        let priceRow = $("<td>");
-        let deleteRow = $("<td>");
+            let imgRow = $("<th>");
+            let nameRow = $("<td class='text-yellow'>");
+            let descriptionRow = $("<td class='text-yellow'>");
+            let quantityRow = $("<td class='text-yellow'>");
+            let conditionRow = $("<td class='text-yellow'>");
+            let priceRow = $("<td class='text-yellow'>");
+            let deleteRow = $("<td>");
 
-        let newImg = $("<img>");
-        newImg.attr("src", newCard.img);
-        let deleteButton = $(
-          "<button type='button' class='btn btn-danger'>"
-        );
-        nameRow.text(newCard.name);
-        descriptionRow.text(newCard.description);
-        quantityRow.text(newCard.quantity);
-        conditionRow.text(newCard.condition);
-        priceRow.text(formatter.format(newCard.price));
+            let newImg = $("<img>");
+            newImg.attr("src", newCard.img);
+            let deleteButton = $(
+              "<button type='button' class='btn btn-danger'>"
+            );
+            nameRow.text(newCard.name);
+            descriptionRow.text(newCard.description);
+            quantityRow.text(newCard.quantity);
+            conditionRow.text(newCard.condition);
+            priceRow.text(formatter.format(newCard.price));
 
-        deleteButton.text("Delete");
-        deleteButton.attr("data-id", newCard.id);
+            deleteButton.text("Delete");
+            deleteButton.attr("data-id", newCard.id);
 
-        deleteButton.on("click", function deletePost() {
-          $.ajax({
-            method: "DELETE",
-            url: "/api/cards/" + newCard.id,
-          }).then(function() {
-            location.reload();
-          });
-        });
+            deleteButton.on("click", function deletePost() {
+              $.ajax({
+                method: "DELETE",
+                url: "/api/cards/" + newCard.id,
+              }).then(function() {
+                location.reload();
+              });
+            });
 
-        deleteRow.append(deleteButton);
-        imgRow.append(newImg);
-        newRow.append(imgRow);
-        newRow.append(nameRow);
-        newRow.append(descriptionRow);
-        newRow.append(quantityRow);
-        newRow.append(conditionRow);
-        newRow.append(priceRow);
-        newRow.append(deleteRow);
+            deleteRow.append(deleteButton);
+            imgRow.append(newImg);
+            newRow.append(imgRow);
+            newRow.append(nameRow);
+            newRow.append(descriptionRow);
+            newRow.append(quantityRow);
+            newRow.append(conditionRow);
+            newRow.append(priceRow);
+            newRow.append(deleteRow);
 
-        $("#database-container").append(newRow);
+            $("#database-container").append(newRow);
           });
         });
       });
@@ -202,12 +202,10 @@ $(document).ready(() => {
   });
 
   $("#cardCollect").on("click", (event) => {
-
     event.preventDefault();
-    const card = $("#cardCollectIn").val()
-    searchCards(card)
-
-  })
+    const card = $("#cardCollectIn").val();
+    searchCards(card);
+  });
 
   $("#cardSearch").on("click", (event) => {
     event.preventDefault();

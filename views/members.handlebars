@@ -1,12 +1,12 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-dark">
 
   <div class="container-fluid">
 
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/logout">
-        Logout
-      </a>
-    </div>
+     <div class="navbar-header">
+        <a class="text-yellow" class="navbar-brand" href="/logout">
+          Logout
+        </a>
+      </div>
 
   </div>
 
@@ -15,7 +15,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h2><span class="member-name"></span>'s Collector Cache</h2>
+      <h2 class="cache-text" class="member-name"> Collector Cache </h2>
     </div>
   </div>
 </div>
@@ -30,7 +30,7 @@
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" id="cardCollectIn" type="search" placeholder="Card Name"
           aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" id="cardCollect" type="submit">Search in your
+        <button class="btn btn-success my-2 my-sm-0" id="cardCollect" type="submit">Search in your
           Collection</button>
       </form>
     </div>
@@ -38,7 +38,7 @@
     <div class="col-md-6">
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" id="cardSearchIn" type="search" placeholder="Card Name" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" id="cardSearch" type="submit">Search to Add</button>
+        <button class="btn btn-success my-2 my-sm-0" id="cardSearch" type="submit">Search to Add</button>
       </form>
     </div>
 
@@ -80,13 +80,13 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Card Image</th>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Condition</th>
-      <th scope="col">Market Price</th> 
-      <th scope="col">Delete</th>
+      <th scope="col" class='header-text'>Card Image</th>
+      <th scope="col" class='header-text'>Name</th>
+      <th scope="col" class='header-text'>Description</th>
+      <th scope="col" class='header-text'>Quantity</th>
+      <th scope="col" class='header-text'>Condition</th>
+      <th scope="col" class='header-text'>Market Price</th> 
+      <th scope="col" class='header-text'>Delete</th>
     </tr>
   </thead>
 
