@@ -66,6 +66,14 @@ module.exports = function(app) {
     }).then(data => res.json(data))
 
   })
+
+  app.delete("/api/cards/:id", function(req, res){
+    db.Card.destroy({
+      where: {
+        id:req.params.id
+      }
+    }).then(data => res.json(data))
+  })
   
 
 };

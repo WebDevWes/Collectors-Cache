@@ -27,12 +27,19 @@ window.onclick = function(event) {
   }
 };
 
+// Used to format number into US Currency upon display
+var formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
 $(document).ready(() => {
   const renderCards = () => {
     $.get("/api/user_data").then((data) => {
       const queryURL = "/api/cards/" + data.id;
       $.get(queryURL).then((data) => {
         const cards = [];
+        console.log(cards);
 
         data.forEach((card) => {
           const queryURL =
@@ -43,6 +50,7 @@ $(document).ready(() => {
             method: "GET",
           }).then((response) => {
             const newCard = {
+              id: card.id,
               name: response.data[0].name,
               img: response.data[0].image_uris.small,
               description: response.data[0].oracle_text,
@@ -60,15 +68,31 @@ $(document).ready(() => {
             let quantityRow = $("<td>")
             let conditionRow = $("<td>")
             let priceRow = $("<td>")
+            let deleteRow =$("<td>")
 
             let newImg = $("<img>");
             newImg.attr("src", newCard.img);
+            let deleteButton = $("<button type='button' class='btn btn-danger'>")
             nameRow.text(newCard.name);
             descriptionRow.text(newCard.description);
             quantityRow.text(newCard.quantity);
             conditionRow.text(newCard.condition);
-            priceRow.text(newCard.price);
+            priceRow.text(formatter.format(newCard.price));
 
+            deleteButton.text("Delete");
+            deleteButton.attr("data-id", newCard.id)
+
+            deleteButton.on("click", function deletePost() {
+              $.ajax({
+                method: "DELETE",
+                url: "/api/cards/" + newCard.id
+              })
+                .then(function() {
+                  location.reload();
+                });
+            })
+
+            deleteRow.append(deleteButton);
             imgRow.append(newImg);
             newRow.append(imgRow);
             newRow.append(nameRow);
@@ -76,6 +100,7 @@ $(document).ready(() => {
             newRow.append(quantityRow);
             newRow.append(conditionRow);
             newRow.append(priceRow);
+            newRow.append(deleteRow)
 
             $("#database-container").append(newRow);
           });
