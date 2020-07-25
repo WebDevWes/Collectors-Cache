@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const { Sequelize } = require("../models");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -59,10 +60,19 @@ module.exports = function(app) {
 
   })
 
-  app.get("/api/cards/:id", (req, res) => {
+  app.get("/api/cards/:id/", (req, res) => {
 
     db.Card.findAll({
-      where: {UserId: req.params.id}
+      where: {UserID: req.params.id}
+    }).then(data => res.json(data))
+
+  })
+
+  
+  app.get("/api/cards/:id/:query", (req, res) => {
+
+    db.Card.findAll({
+      where: {name:{[Sequelize.Op.like]:'%' + req.params.query + '%'}, UserID: req.params.id}
     }).then(data => res.json(data))
 
   })
