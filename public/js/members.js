@@ -80,6 +80,7 @@ $(document).ready(() => {
             nameRow.text(newCard.name);
             descriptionRow.text(newCard.description);
             quantityRow.text(newCard.quantity);
+            quantityRow.attr("data-value", newCard.quantity);
             conditionRow.text(newCard.condition);
             priceRow.text(formatter.format(newCard.price));
 
@@ -161,6 +162,7 @@ $(document).ready(() => {
             nameRow.text(newCard.name);
             descriptionRow.text(newCard.description);
             quantityRow.text(newCard.quantity);
+            quantityRow.attr("data-value", newCard.quantity)
             conditionRow.text(newCard.condition);
             priceRow.text(formatter.format(newCard.price));
 
@@ -252,7 +254,7 @@ $(document).ready(() => {
         if ($("#quantity").val() == "") {
           quantity = $("#quantity").attr("placeholder");
         } else {
-          quantity = $("#quantity").attr("value");
+          quantity = $("#quantity").val();
         }
 
         const condition = $("#condition").val();
