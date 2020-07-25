@@ -7,43 +7,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
   <link href="stylesheets/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+  <style>h2{
+      font-family: 'Bungee', cursive;
+  }</style>
 </head>
 
-<body>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-      </div>
-    </div>
-  </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Sign Up Form</h2>
-        <form class="signup">
-          <div class="form-group">
-            <label for="inputName">Username</label>
-            <input type="text" class="form-control" id="name-input" placeholder="Username">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email-input" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password-input" placeholder="Password">
-          </div>
-          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span> <span class="msg"></span>
-          </div>
-          <button type="submit" class="btn btn-default">Sign Up</button>
-        </form>
-        <br />
-        <p>Or log in <a href="/">here</a></p>
-      </div>
+<body style="background-image: url('https://www.wmra.org/sites/wmra/files/styles/medium/public/201906/mtg_random_assortment_1_5.jpg');background-repeat: no-repeat;background-size: cover;"></div>
+ 
+  <div class="container-fluid">
+    <div class="navbar-header">
     </div>
   </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2 class="text-yellow"></h2class>Sign Up Form</h2>
+      <form class="signup">
+        <div class="form-group">
+          <label class="text-yellow" for="inputName">Username</label>
+          <input type="text" class="form-control" id="name-input" placeholder="Username">
+        </div>
+        <div class="form-group">
+          <label class="text-yellow" for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="email-input" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label class="text-yellow"  for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="password-input" placeholder="Password">
+        </div>
+        <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span class="sr-only">Error:</span> <span class="msg"></span>
+        </div>
+        <button type="submit" class="btn btn-success">Sign Up</button>
+      </form>
+      <br />
+      <p class="text-red">Or log in <a class="text-red" href="/">here</a></p>
+    </div>
+  </div>
+</div>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>

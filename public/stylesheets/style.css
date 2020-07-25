@@ -94,3 +94,28 @@ option {
 #quantity {
   color: black;
 }
+
+.text-yellow{
+  color:yellow;
+  font-size: 2rem;
+}
+
+.cache-text{
+  color:yellow;
+  font-size: 5rem;
+}
+
+.header-text{
+  color:yellow;
+  font-size: 3rem;
+}
+
+.text-red{
+  color:yellow;
+  font-size: 2rem;
+}
+​
+.background-size{
+  margin-top: 30px;
+  background-repeat: no-repeat
+}
