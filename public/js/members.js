@@ -28,45 +28,63 @@ window.onclick = function(event) {
 };
 
 $(document).ready(() => {
-
   const renderCards = () => {
+    $.get("/api/user_data").then((data) => {
+      const queryURL = "/api/cards/" + data.id;
+      $.get(queryURL).then((data) => {
+        const cards = [];
 
-    $.get("/api/user_data").then(data => {
+        data.forEach((card) => {
+          const queryURL =
+            "https://api.scryfall.com/cards/search/?q=" + card.name;
 
-      const queryURL = "/api/cards/" + data.id
-      $.get(queryURL).then(data => {
-        const cards = []
-
-        data.forEach(card => {
-
-          const queryURL = "https://api.scryfall.com/cards/search/?q=" + card.name
-          
           $.ajax({
             url: queryURL,
             method: "GET",
-          }).then(response => {
- 
-            const newCard= {
-
+          }).then((response) => {
+            const newCard = {
               name: response.data[0].name,
               img: response.data[0].image_uris.small,
               description: response.data[0].oracle_text,
               quantity: card.quantity,
               condtion: card.condition,
-              price: response.data[0].prices.usd
+              price: response.data[0].prices.usd,
+            };
+            cards.push(newCard);
 
-            }
-            cards.push(newCard)
+            let newRow = $("<tr>");
+
+            let imgRow = $("<th>");
+            let nameRow = $("<td>");
+            let descriptionRow = $("<td>")
+            let quantityRow = $("<td>")
+            let conditionRow = $("<td>")
+            let priceRow = $("<td>")
+
+            let newImg = $("<img>");
+            newImg.attr("src", newCard.img);
+            nameRow.text(newCard.name);
+            descriptionRow.text(newCard.description);
+            quantityRow.text(newCard.quantity);
+            conditionRow.text(newCard.condition);
+            priceRow.text(newCard.price);
+
+            imgRow.append(newImg);
+            newRow.append(imgRow);
+            newRow.append(nameRow);
+            newRow.append(descriptionRow);
+            newRow.append(quantityRow);
+            newRow.append(conditionRow);
+            newRow.append(priceRow);
+
+            $("#database-container").append(newRow);
           });
-        })
+        });
+      });
+    });
+  };
 
-        console.log(cards)
-      })
-    })
-
-  }
-
-  renderCards()
+  renderCards();
 
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
@@ -101,13 +119,12 @@ $(document).ready(() => {
       modalSelect.attr("data-name", searchCall.data[i].name);
       $(".modal-body").append(modalSelect);
 
-
       modalSelect.on("click", function selectedCard() {
         if (modalSelect.hasClass("selectedCard") === false) {
           modalSelect.addClass("selectedCard");
         }
 
-        let quantity
+        let quantity;
         if ($("#quantity").val() == "") {
           quantity = $("#quantity").attr("placeholder");
         } else {
@@ -115,25 +132,20 @@ $(document).ready(() => {
         }
 
         const condition = $("#condition").val();
-        console.log("quantity", quantity)
-        console.log("typeof", typeof quantity)
+        console.log("quantity", quantity);
+        console.log("typeof", typeof quantity);
         // console.log(typeof quantity)
 
-        $.get("/api/user_data").then(data => {
-
+        $.get("/api/user_data").then((data) => {
           const newCard = {
-
             name: modalSelect.data("name"),
             quantity: quantity,
             condition: condition,
-            UserId: data.id
+            UserId: data.id,
+          };
 
-          }
-
-          submitCard(newCard)
-
-        })
-
+          submitCard(newCard);
+        });
       });
     }
   };
@@ -150,14 +162,10 @@ $(document).ready(() => {
     $(section).val("");
   };
 
-
-
-  const submitCard = card => {
-    console.log("posting")
+  const submitCard = (card) => {
+    console.log("posting");
     $.post("/api/cards", card, function() {
       location.reload();
     });
-  }
-
-
+  };
 });

@@ -78,10 +78,17 @@
 
 </div>
 
-<div>
-  <div>
-    {{#each cards}}
-    {{Card-Database}}
-    {{/each}}
-  </div>
-</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Card Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Market Price</th> 
+    </tr>
+  </thead>
+
+  <tbody id="database-container">
+  </tbody>
+</table>
