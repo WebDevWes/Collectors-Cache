@@ -77,6 +77,13 @@ module.exports = function(app) {
 
   })
 
+  app.get("/api/cards/:id/:query", (req, res) => {
+
+    db.Card.findAll({
+      where: {name:{[Sequelize.Op.like]:'%' + req.params.query + '%'}, UserID: req.params.id}
+    }).then(data => res.json(data))
+  })
+
   app.delete("/api/cards/:id", function(req, res){
     db.Card.destroy({
       where: {

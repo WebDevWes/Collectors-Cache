@@ -28,9 +28,9 @@ window.onclick = function(event) {
 };
 
 // Used to format number into US Currency upon display
-var formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
+var formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
 });
 
 $(document).ready(() => {
@@ -40,7 +40,8 @@ $(document).ready(() => {
       const queryURL = "/api/cards/" + data.id;
       $.get(queryURL).then((data) => {
         const cards = [];
-        console.log(cards);
+        
+        $("#database-container").empty();
 
         data.forEach((card) => {
           const queryURL =
@@ -56,7 +57,7 @@ $(document).ready(() => {
               img: response.data[0].image_uris.small,
               description: response.data[0].oracle_text,
               quantity: card.quantity,
-              condtion: card.condition,
+              condition: card.condition,
               price: response.data[0].prices.usd,
             };
             cards.push(newCard);
@@ -65,15 +66,17 @@ $(document).ready(() => {
 
             let imgRow = $("<th>");
             let nameRow = $("<td>");
-            let descriptionRow = $("<td>")
-            let quantityRow = $("<td>")
-            let conditionRow = $("<td>")
-            let priceRow = $("<td>")
-            let deleteRow =$("<td>")
+            let descriptionRow = $("<td>");
+            let quantityRow = $("<td>");
+            let conditionRow = $("<td>");
+            let priceRow = $("<td>");
+            let deleteRow = $("<td>");
 
             let newImg = $("<img>");
             newImg.attr("src", newCard.img);
-            let deleteButton = $("<button type='button' class='btn btn-danger'>")
+            let deleteButton = $(
+              "<button type='button' class='btn btn-danger'>"
+            );
             nameRow.text(newCard.name);
             descriptionRow.text(newCard.description);
             quantityRow.text(newCard.quantity);
@@ -81,17 +84,16 @@ $(document).ready(() => {
             priceRow.text(formatter.format(newCard.price));
 
             deleteButton.text("Delete");
-            deleteButton.attr("data-id", newCard.id)
+            deleteButton.attr("data-id", newCard.id);
 
             deleteButton.on("click", function deletePost() {
               $.ajax({
                 method: "DELETE",
-                url: "/api/cards/" + newCard.id
-              })
-                .then(function() {
-                  location.reload();
-                });
-            })
+                url: "/api/cards/" + newCard.id,
+              }).then(function() {
+                location.reload();
+              });
+            });
 
             deleteRow.append(deleteButton);
             imgRow.append(newImg);
@@ -101,7 +103,7 @@ $(document).ready(() => {
             newRow.append(quantityRow);
             newRow.append(conditionRow);
             newRow.append(priceRow);
-            newRow.append(deleteRow)
+            newRow.append(deleteRow);
 
             $("#database-container").append(newRow);
           });
@@ -114,41 +116,82 @@ $(document).ready(() => {
 
   const searchCards = (query) => {
 
-    $.get("/api/user_data").then(data => {
+    $.get("/api/user_data").then((data) => {
+      const queryURL = "/api/cards/" + data.id + "/" + query;
 
-      const queryURL = "/api/cards/" + data.id +"/" + query
+      $.get(queryURL).then((data) => {
+        const cards = [];
 
-      $.get(queryURL).then(data => {
-        const cards = []
+        $("#database-container").empty();
 
-        data.forEach(card => {
+        data.forEach((card) => {
+          const queryURL =
+            "https://api.scryfall.com/cards/search/?q=" + card.name;
 
-          const queryURL = "https://api.scryfall.com/cards/search/?q=" + card.name
-          
           $.ajax({
             url: queryURL,
             method: "GET",
-          }).then(response => {
- 
-            const newCard= {
-
+          }).then((response) => {
+            const newCard = {
               name: response.data[0].name,
               img: response.data[0].image_uris.small,
               description: response.data[0].oracle_text,
               quantity: card.quantity,
-              condtion: card.condition,
-              price: response.data[0].prices.usd
 
-            }
-            cards.push(newCard)
+              condition: card.condition,
+              price: response.data[0].prices.usd,
+            };
+            cards.push(newCard);
+
+            let newRow = $("<tr>");
+
+        let imgRow = $("<th>");
+        let nameRow = $("<td>");
+        let descriptionRow = $("<td>");
+        let quantityRow = $("<td>");
+        let conditionRow = $("<td>");
+        let priceRow = $("<td>");
+        let deleteRow = $("<td>");
+
+        let newImg = $("<img>");
+        newImg.attr("src", newCard.img);
+        let deleteButton = $(
+          "<button type='button' class='btn btn-danger'>"
+        );
+        nameRow.text(newCard.name);
+        descriptionRow.text(newCard.description);
+        quantityRow.text(newCard.quantity);
+        conditionRow.text(newCard.condition);
+        priceRow.text(formatter.format(newCard.price));
+
+        deleteButton.text("Delete");
+        deleteButton.attr("data-id", newCard.id);
+
+        deleteButton.on("click", function deletePost() {
+          $.ajax({
+            method: "DELETE",
+            url: "/api/cards/" + newCard.id,
+          }).then(function() {
+            location.reload();
           });
-        })
+        });
 
-        console.log(cards)
-      })
-    })
+        deleteRow.append(deleteButton);
+        imgRow.append(newImg);
+        newRow.append(imgRow);
+        newRow.append(nameRow);
+        newRow.append(descriptionRow);
+        newRow.append(quantityRow);
+        newRow.append(conditionRow);
+        newRow.append(priceRow);
+        newRow.append(deleteRow);
 
-  }
+        $("#database-container").append(newRow);
+          });
+        });
+      });
+    });
+  };
 
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
