@@ -207,6 +207,17 @@ $(document).ready(() => {
     searchCards(card);
   });
 
+  $("#pdfmake").on("click", (event) => {
+
+    $.get("/api/user_data").then((data) => {
+      const test = {name:"narset",price:4.50,quantity:"3"}
+      console.log(test)
+      window.open("https://service.pdfgun.online/pdf/api/v1/0a223ee4e3984778d68a1b70ddc31e6160de18e1f0facc7c6a3d9c4335c49aff9b78dccf8add1a4521af4c9813b0a4c1/985f3bfb77cd7d30493ef4c7fc72eb808a557b66aaab5e76eb445c354a4a4fb42a414cb2670017dbc568ed06bed1c0ea/Cards?param1=" + data.username + "&content=" + test, "_blank")
+
+    });
+
+  })
+
   $("#cardSearch").on("click", (event) => {
     event.preventDefault();
     const queryURL = buildQueryURL();
