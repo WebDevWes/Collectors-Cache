@@ -72,16 +72,23 @@
     </div>
     <div class="modal-footer">
       <h3>Select accurate card from selection above!</h3>
-      <button type="button" class="btn btn-primary">Add</button>
     </div>
   </div>
 
 </div>
 
-<div>
-  <div>
-    {{#each cards}}
-    {{Card-Database}}
-    {{/each}}
-  </div>
-</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Card Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Market Price</th> 
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+
+  <tbody id="database-container">
+  </tbody>
+</table>
