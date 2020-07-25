@@ -35,6 +35,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 
 $(document).ready(() => {
   const renderCards = () => {
+
     $.get("/api/user_data").then((data) => {
       const queryURL = "/api/cards/" + data.id;
       $.get(queryURL).then((data) => {
@@ -114,6 +115,7 @@ $(document).ready(() => {
   renderCards();
 
   const searchCards = (query) => {
+
     $.get("/api/user_data").then((data) => {
       const queryURL = "/api/cards/" + data.id + "/" + query;
 
@@ -135,6 +137,7 @@ $(document).ready(() => {
               img: response.data[0].image_uris.small,
               description: response.data[0].oracle_text,
               quantity: card.quantity,
+
               condition: card.condition,
               price: response.data[0].prices.usd,
             };

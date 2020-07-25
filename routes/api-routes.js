@@ -63,7 +63,16 @@ module.exports = function(app) {
   app.get("/api/cards/:id/", (req, res) => {
 
     db.Card.findAll({
-      where: {UserId: req.params.id}
+      where: {UserID: req.params.id}
+    }).then(data => res.json(data))
+
+  })
+
+  
+  app.get("/api/cards/:id/:query", (req, res) => {
+
+    db.Card.findAll({
+      where: {name:{[Sequelize.Op.like]:'%' + req.params.query + '%'}, UserID: req.params.id}
     }).then(data => res.json(data))
 
   })
