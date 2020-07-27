@@ -54,12 +54,14 @@ module.exports = function(app) {
     }
   });
 
+  // Refers to /models/card.js to create new card, takes in post request from members.js
   app.post("/api/cards", (req, res) => {
 
     db.Card.create(req.body).then(dbCard => res.json(dbCard))
 
   })
 
+  // Refers to /models/card.js to grab all card, get request from members.js
   app.get("/api/cards/:id/", (req, res) => {
 
     db.Card.findAll({
@@ -68,7 +70,7 @@ module.exports = function(app) {
 
   })
 
-  
+  // Refers to /models/card.js to grab queried card, get request from members.js
   app.get("/api/cards/:id/:query", (req, res) => {
 
     db.Card.findAll({
@@ -77,6 +79,8 @@ module.exports = function(app) {
 
   })
 
+  // Refers to /models/card.js to grab the card associatied with the button that triggers the event
+  // get request from members.js, to delete the card
   app.delete("/api/cards/:id", function(req, res){
     db.Card.destroy({
       where: {
