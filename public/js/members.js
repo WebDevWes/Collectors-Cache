@@ -203,12 +203,15 @@ $(document).ready(() => {
     document.title = data.username + "'s Collector Cache";
   });
 
+  // Triggers the searchCards function that queries the user's card collection to only display what is in the search field
   $("#cardCollect").on("click", (event) => {
     event.preventDefault();
     const card = $("#cardCollectIn").val();
     searchCards(card);
   });
 
+  // Triggers PDF Gun to create a table in the form of a PDF file for the user to print or download
+  // Utilizes PDFGun's API
   $("#pdfmake").on("click", (event) => {
 
     $.get("/api/user_data").then((data) => {
@@ -220,6 +223,8 @@ $(document).ready(() => {
 
   })
 
+  // Triggers a search to scryfall API and brings up a modal with the search value from the input box
+  // Triggers callAPI to attach related cards in the form of images
   $("#cardSearch").on("click", (event) => {
     event.preventDefault();
     const queryURL = buildQueryURL();
@@ -229,13 +234,12 @@ $(document).ready(() => {
       url: queryURL,
       method: "GET",
     }).then(function ajaxCall(response) {
-      //console.log(response);
       searchCall = response;
-      // console.log(searchCall);
       callAPI(searchCall);
     });
   });
 
+  // Using for loop, takes response from the queries from scryfall API and displays related cards in the form of images
   const callAPI = () => {
     $(".modal-body").empty();
     for (let i = 0; i < searchCall.data.length; i++) {
@@ -260,7 +264,6 @@ $(document).ready(() => {
         const condition = $("#condition").val();
         console.log("quantity", quantity);
         console.log("typeof", typeof quantity);
-        // console.log(typeof quantity)
 
         $.get("/api/user_data").then((data) => {
           const newCard = {
@@ -276,6 +279,7 @@ $(document).ready(() => {
     }
   };
 
+  // Queries scryfall api using parameter from #cardSearchIn
   const buildQueryURL = () => {
     const queryURL = "https://api.scryfall.com/cards/search/?q=";
     const queryParam = $("#cardSearchIn")
