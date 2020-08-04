@@ -1,49 +1,24 @@
-# Travis Setup
 
-In this activity we will set up the project repo with Travis CI to ensure that linting passes on all changes before they can be merged into master.
+![License Badge](https://img.shields.io/badge/License-ISC-green.svg)
 
-## Instructions
+### Github Username: Lulamoon96, wesaboo, Esparza96, admishra93
 
-* Only the owner of the project repo should complete this activity, other group members should watch.
+## Project/Repo Title: Collectors Cache
 
-### Part 1: Protecting Master
+Description: A database web app that keep tracks of your Magic the Gathering Card collection and provides accurate and updated Market Prices. Technologies utilized includes, mySQL database, PDF Gun API for exporting information to PDF, bcryptJS to encrypt password for login information. Backend technologies are express, handlebars, passport, and sequelize. Frontend libraries used includes bootstrap and jquery.
 
-* Before we can set up Travis, we must configure the project repo to protect the master branch.
 
-* Navigate to the repo's page, then click the "Settings" tab.
+Installation Instructions: User must create an account, requirements are Username, Password, and Email address.
 
-* Select "Branches" from the left sidebar.
+![image](assets/login.png)
 
-* Under "Branch protection rules", choose "master" from the dropdown.
+How to use: Once logged in, user can search for a card by name, once name is entered a modal will show up providing images of any cards that correlates to the entry. User can change the quantity and condition of the card before selecting the corresponding card image to add it to the user's database. User can also search through collection for specific cards using keywords.
 
-* Check off the following options:
+![images](assets/cardCache.png)
 
-  * "Protect this branch"
+![images](assets/cardSelect.png)
 
-  * "Require pull request reviews before merging"
+License: ISC
 
-  * "Include administrators"
+Contributor: Luigi Galvan, Wesley Tran, Alexis E. Esparza, Avinash Mishra
 
-  * "Require status checks to pass before merging"
-
-  * "Require branches to be up to date before merging"
-
-* Click "Save changes"
-
-### Part 2: Add Travis
-
-* Navigate to <https://github.com/marketplace/travis-ci>.
-
-* Select the option to "Set up a new plan" and choose the $0 "Open Source" plan when prompted.
-
-* Click "Install it for free" and then on the next page click "Complete order and begin installation".
-
-* On the next page select the radio button that reads "Only select repositories".
-
-* From the "Select repositories" dropdown, choose your project repo.
-
-* Click the "Install" button to complete the process.
-
-* In the [starter code](`../../../14-Full-Stack/04-Supplemental/Sequelize-Passport-Example`), note that there is a `travis.yml` file that specifies the steps of the build process. 
-
-* Make a small change to the project, add, commit, and push your code to ensure that Travis runs the linter.
