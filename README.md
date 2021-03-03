@@ -5,6 +5,8 @@
 
 ## Project/Repo Title: Collectors Cache
 
+## Deployed : https://immense-spire-70706.herokuapp.com/
+
 Description: A database web app that keep tracks of your Magic the Gathering Card collection and provides accurate and updated Market Prices. Technologies utilized includes, mySQL database, PDF Gun API for exporting information to PDF, bcryptJS to encrypt password for login information. Backend technologies are express, handlebars, passport, and sequelize. Frontend libraries used includes bootstrap and jquery.
 
 
