@@ -1,7 +1,7 @@
 
 ![License Badge](https://img.shields.io/badge/License-ISC-green.svg)
 
-### Github Username: Lulamoon96, wesaboo, Esparza96, admishra93
+### Github Username: Lulamoon96, WebDevWes, Esparza96, admishra93
 
 ## Project/Repo Title: Collectors Cache
 
